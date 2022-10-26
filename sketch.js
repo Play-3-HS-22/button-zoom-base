@@ -2,7 +2,6 @@
 let trees = [];
 
 let zoom = 500000;
-let zoomAmt = 10000;
 
 var projection = d3
   .geoMercator()
@@ -10,33 +9,12 @@ var projection = d3
   .translate([400, 400])
   .scale(zoom)
 
-let zoomInButton;
-let zoomOutButton;
-
 function preload() {
   trees = loadJSON("trees.json");
 }
 
 function setup() {
   createCanvas(800, 800);
-
-  zoomInButton = createButton('+');
-  zoomInButton.position(20, 300);
-  zoomInButton.mousePressed(zoomIn);
-  // zoomInButton.style('width', '30px');
-  // zoomInButton.style('height', '30px');
-  zoomInButton.style('font-size', '30px');
-  zoomInButton.style('background-color', 'orange');
-  zoomInButton.style('border', '2px solid black');
-  zoomInButton.style('border-radius', '5px');
-  zoomInButton.style('cursor', 'pointer');
-
-  // padding for the button
-  zoomInButton.style('padding', '0px 7px 0px 7px');
-
-  zoomOutButton = createButton('-');
-  zoomOutButton.position(20, 350);
-  zoomOutButton.mousePressed(zoomOut);
 
   noLoop();
 }
@@ -60,18 +38,5 @@ function draw() {
     ellipse(x, y, 2, 2);
   }
 
-}
-
-
-function zoomIn() {
-  zoom += zoomAmt;
-  projection.scale(zoom);
-  redraw();
-}
-
-function zoomOut() {
-  zoom -= zoomAmt;
-  projection.scale(zoom);
-  redraw();
 }
 
